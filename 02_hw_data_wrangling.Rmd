@@ -1,6 +1,6 @@
 ---
 title: "Problem Set 2: Data Wrangling"
-author: Your Name Here
+author: Jane Olson
 output: pdf_document
 ---
 
@@ -45,7 +45,20 @@ Use `dplyr` functions to create a table with the number of candidates in each ty
 
 ## Answer 1
 
+```{r}
+library(tidyverse)
+library(dplyr)
+library(knitr)
 
+fb_ads <- read_csv("data/fb_ads.csv")
+
+incumbency_table <- fb_ads |>
+  group_by(incumbency) |>
+  summarize(count = n())
+knitr::kable(incumbency_table,
+             col.names = c("Incumbency Status", "Number of Candidates"))
+```
+There are 4532 candidates in the data set.
 
 \newpage
 
