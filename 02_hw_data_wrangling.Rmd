@@ -165,8 +165,7 @@ fb_top_plot <- ggplot(top_15_house_candidates, aes(x = impressions_millions, y =
   geom_bar(stat = "identity") +
   labs(title = "Top 15 US House Candidates by Facebook Ad Impressions",
   x = "Facebook Ad Impressions (millions)",
-  y = "Candidate Name",
-  fill = "Party") +
+  y = "Candidate Name") +
   scale_fill_manual(values = c(R = "red", D = "blue")) +
   theme_minimal()
   
