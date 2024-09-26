@@ -150,7 +150,28 @@ You do not need to exactly match the labels, but you should have informative lab
 
 ## Answer 4
 
+```{r}
+library(dplyr)
+library(ggplot2)
 
+house_ads <- fb_ads |>
+  filter(office == "US House")
+  
+top_15_house_candidates <- house_ads |>
+  arrange(desc(impressions_millions)) |>
+  slice(1:15)
+  
+fb_top_plot <- ggplot(top_15_house_candidates, aes(x = impressions_millions, y = reorder(cand_name_last, impressions_millions), fill = party)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 15 US House Candidates by Facebook Ad Impressions",
+  x = "Facebook Ad Impressions (millions)",
+  y = "Candidate Name",
+  fill = "Party") +
+  scale_fill_manual(values = c(R = "red", D = "blue")) +
+  theme_minimal()
+  
+fb_top_plot
+```
 
 \newpage
 
