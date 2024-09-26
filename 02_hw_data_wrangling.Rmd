@@ -120,8 +120,8 @@ us_house_data <- fb_ads |>
 plot_q3 <- ggplot(us_house_data, aes(x = impressions_millions)) +
   geom_histogram() +
   labs(
-    title = "Total Facebook Ad Impressions of US House Candidates (in millions)",
-    x = "Impressions (in millions)",
+    title = "Histogram of Facebook Ad Impressions (millions) of US House Candidates",
+    x = "Impressions (millions)",
     y = "Count"
   )
 
