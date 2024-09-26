@@ -112,23 +112,21 @@ library(dplyr)
 library(ggplot2)
 
 fb_ads <- fb_ads |>
-  mutate(impressions_millions = impressions * 1000000)
+  mutate(impressions_millions = impressions / 1e6)
 
 us_house_data <- fb_ads |>
   filter(office == "US House")
 
 plot_q3 <- ggplot(us_house_data, aes(x = impressions_millions)) +
   geom_histogram() +
-  labs(
-    title = "Histogram of Facebook Ad Impressions (millions) of US House Candidates",
-    x = "Impressions (millions)",
-    y = "Count"
-  )
+  labs(title = "Facebook Ad Impressions (in millions) of US House Candidates",
+    x = "Impressions (in millions)",
+    y = "Count")
 
 print(plot_q3)
 ```
 
-
+The shape of the histogram decreases exponentially as x (impressions in millions) increases. Most of the candidates did not have more than ten million ad impressions on Facebook.
 
 
 \newpage
