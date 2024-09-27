@@ -126,7 +126,7 @@ plot_q3 <- ggplot(us_house_data, aes(x = impressions_millions)) +
 print(plot_q3)
 ```
 
-The shape of the histogram decreases exponentially as x (impressions in millions) increases. Most of the candidates did not have more than ten million ad impressions on Facebook.
+The shape of the histogram decreases exponentially as x (Impressions (in millions)) increases. Most of the candidates did not have more than ten million ad impressions on Facebook.
 
 
 \newpage
