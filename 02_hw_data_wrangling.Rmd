@@ -153,22 +153,24 @@ You do not need to exactly match the labels, but you should have informative lab
 ```{r}
 library(dplyr)
 library(ggplot2)
-
-house_ads <- fb_ads |>
-  filter(office == "US House")
-  
-top_15_house_candidates <- house_ads |>
+## Filter data for US House candidates
+us_house_data <- fb_ads |>
+  filter(office == "US House") |>
   arrange(desc(impressions_millions)) |>
-  slice(1:15)
-  
-fb_top_plot <- ggplot(top_15_house_candidates, aes(x = impressions_millions, y = reorder(cand_name_last, impressions_millions), fill = party)) +
-  geom_bar(stat = "identity") +
+  slice_head(n = 15) |>
+  mutate(cand_name_last = factor(cand_name_last,
+                                 levels = cand_name_last[order(impressions_millions)]))
+
+## Barplot
+fb_top_plot <- ggplot(us_house_data,
+                      aes(x = impressions_millions,
+                          y = cand_name_last)) +
+  geom_bar(aes(fill = party), stat = "identity") +
   labs(title = "Top 15 US House Candidates by Facebook Ad Impressions",
-  x = "Facebook Ad Impressions (millions)",
-  y = "Candidate Name") +
-  scale_fill_manual(values = c(R = "red", D = "blue")) +
-  theme_minimal()
-  
+       x = "Facebook Ad Impressions (millions)",
+       y = "Candidate Last Name") +
+  scale_fill_manual(values = c("R" = "red", "D" = "blue"))
+
 fb_top_plot
 ```
 
